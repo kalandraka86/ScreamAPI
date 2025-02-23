@@ -1,0 +1,8 @@
+Resumen de las relaciones en la base de datos:
+
+Película → Género: Una película tiene un solo género, pero un género puede tener muchas películas (relación de muchos a uno).
+Película → Director: Una película tiene un solo director, pero un director puede dirigir muchas películas (relación de muchos a uno).
+Película → Detalle de película: Una película tiene un solo conjunto de detalles (relación de uno a uno).
+Película → Actores: Una película puede tener muchos actores, y un actor puede aparecer en muchas películas (relación de muchos a muchos).
+Género → Películas: Un género puede tener muchas películas, pero cada película tiene solo un género (relación de uno a muchos).
+Director → Películas: Un director puede dirigir muchas películas, pero cada película tiene solo un director (relación de uno a muchos).

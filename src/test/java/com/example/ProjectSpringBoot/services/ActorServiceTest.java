@@ -9,10 +9,11 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.time.LocalDate;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-@ExtendWith(MockitoExtension.class)  // Usar @ExtendWith en lugar de @RunWith
+@ExtendWith(MockitoExtension.class)
 class ActorServiceTest {
 
     @Mock
@@ -25,7 +26,8 @@ class ActorServiceTest {
 
     @BeforeEach
     void setUp() {
-        actor = new Actor("Robert Downey Jr.","23/03/1975" );
+        // Usamos LocalDate para la fecha de nacimiento
+        actor = new Actor("Robert Downey Jr.", LocalDate.of(1975, 3, 23));  // Usamos LocalDate
     }
 
     @Test

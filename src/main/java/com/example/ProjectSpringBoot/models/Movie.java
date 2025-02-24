@@ -1,6 +1,6 @@
 package com.example.ProjectSpringBoot.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -27,8 +27,9 @@ public class Movie {
     @JoinColumn(name = "director_id", nullable = false)
     private Director director;
 
-    @JsonIgnore // Evita la serialización recursiva
-    @OneToOne(mappedBy = "movie")
+    // Se cambió a FetchType.EAGER para cargar los detalles automáticamente
+    @OneToOne(mappedBy = "movie", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JsonManagedReference // Evita la recursión infinita en la serialización
     private MovieDetail movieDetail;
 
     @ManyToMany
@@ -38,6 +39,12 @@ public class Movie {
             inverseJoinColumns = @JoinColumn(name = "actor_id")
     )
     private List<Actor> actors;
+
+    // Método auxiliar para establecer la relación bidireccional
+    public void addMovieDetail(MovieDetail detail) {
+        this.movieDetail = detail;
+        detail.setMovie(this);
+    }
 
     // Getters y setters
     public Long getId() {

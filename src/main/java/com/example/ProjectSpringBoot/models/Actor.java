@@ -1,6 +1,7 @@
 package com.example.ProjectSpringBoot.models;
 
 import jakarta.persistence.*;
+import java.time.LocalDate;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
@@ -17,12 +18,11 @@ public class Actor {
     @Column(nullable = false)
     private String name;
 
-    @Size(max = 10, message = "La fecha de nacimiento no puede tener más de 10 caracteres")
-    private String birthdate;
+    private LocalDate birthdate;  // Cambio a LocalDate
 
     public Actor() {}
 
-    public Actor(String name, String birthdate) {
+    public Actor(String name, LocalDate birthdate) {
         this.name = name;
         this.birthdate = birthdate;
     }
@@ -44,11 +44,11 @@ public class Actor {
         this.name = name;
     }
 
-    public String getBirthdate() {
+    public LocalDate getBirthdate() {
         return birthdate;
     }
 
-    public void setBirthdate(String birthdate) {
+    public void setBirthdate(LocalDate birthdate) {
         this.birthdate = birthdate;
     }
 }

@@ -35,8 +35,14 @@ public class MovieDetailController {
 
     @PutMapping("/{id}")
     public ResponseEntity<MovieDetail> updateMovieDetail(@PathVariable Long id, @RequestBody MovieDetail movieDetail) {
-        return ResponseEntity.ok(movieDetailService.updateMovieDetail(id, movieDetail));
+        Optional<MovieDetail> existingMovieDetail = movieDetailService.getMovieDetailById(id);
+        if (existingMovieDetail.isPresent()) {
+            return ResponseEntity.ok(movieDetailService.updateMovieDetail(id, movieDetail));
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
+
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteMovieDetail(@PathVariable Long id) {

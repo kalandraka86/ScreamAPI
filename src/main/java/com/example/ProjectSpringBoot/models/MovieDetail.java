@@ -11,18 +11,19 @@ public class MovieDetail {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @JsonBackReference // Evita la serialización recursiva desde Movie
+    @JsonBackReference // Evita la recursión infinita en la serialización
     @OneToOne
-    @JoinColumn(name = "movie_id", nullable = false)
+    @JoinColumn(name = "movie_id", nullable = false, unique = true)
     private Movie movie;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 255)
     private String description;
 
     @Column(nullable = false)
-    private Integer releaseYear;
+    private Integer duration;
 
-    // Otros campos, validaciones, y métodos
+    @Column(nullable = false, length = 50)
+    private String language;
 
     // Getters y setters
     public Long getId() {
@@ -49,11 +50,19 @@ public class MovieDetail {
         this.description = description;
     }
 
-    public Integer getReleaseYear() {
-        return releaseYear;
+    public Integer getDuration() {
+        return duration;
     }
 
-    public void setReleaseYear(Integer releaseYear) {
-        this.releaseYear = releaseYear;
+    public void setDuration(Integer duration) {
+        this.duration = duration;
+    }
+
+    public String getLanguage() {
+        return language;
+    }
+
+    public void setLanguage(String language) {
+        this.language = language;
     }
 }

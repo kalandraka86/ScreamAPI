@@ -27,9 +27,13 @@ public class MovieDetailService {
     }
 
     public MovieDetail updateMovieDetail(Long id, MovieDetail movieDetail) {
+        if (!movieDetailRepository.existsById(id)) {
+            throw new RuntimeException("MovieDetail with id " + id + " not found");
+        }
         movieDetail.setId(id);
         return movieDetailRepository.save(movieDetail);
     }
+
 
     public void deleteMovieDetail(Long id) {
         movieDetailRepository.deleteById(id);

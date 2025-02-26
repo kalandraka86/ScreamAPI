@@ -6,3 +6,9 @@ Película → Detalle de película: Una película tiene un solo conjunto de deta
 Película → Actores: Una película puede tener muchos actores, y un actor puede aparecer en muchas películas (relación de muchos a muchos).
 Género → Películas: Un género puede tener muchas películas, pero cada película tiene solo un género (relación de uno a muchos).
 Director → Películas: Un director puede dirigir muchas películas, pero cada película tiene solo un director (relación de uno a muchos).
+
+Swagger
+http://localhost:8080/swagger-ui/index.html#/
+
+GitHub Rep
+https://github.com/kalandraka86/ScreamAPI
